@@ -151,7 +151,7 @@ class TwythonStreamer(object):
                                       'Unable to decode response, \
                                       not valid JSON.')
                     else:
-                        if self.on_success(data):  # pragma: no cover
+                        if self.on_success(data,line):  # pragma: no cover
                             for message_type in self.handlers:
                                 if message_type in data:
                                     handler = getattr(self,
@@ -164,7 +164,7 @@ class TwythonStreamer(object):
 
         response.close()
 
-    def on_success(self, data):  # pragma: no cover
+    def on_success(self, data, line):  # pragma: no cover
         """Called when data has been successfully received from the stream.
         Returns True if other handlers for this message should be invoked.
 
